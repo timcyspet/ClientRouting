@@ -7,11 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="BaseProject" Version="1.0.0-1.0.0.3677" />
+    <PackageReference Include="BaseProject" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
 ﻿using BaseProject;
+using BaseProject.Model;
 
 namespace ClientRouting.Model
 {
