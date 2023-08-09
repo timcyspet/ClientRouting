@@ -28,8 +28,8 @@ namespace ClientRouting.Model
 
     public class ResourceConfiguration :BaseObject
     {
-        public string Key { get; set; }
         public string Value { get; set; }
+        public ConfigurationType ConfigurationType { get; set;}
     }
 
     public class ConfigurationType : BaseObject

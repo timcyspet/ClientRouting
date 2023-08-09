@@ -1,4 +1,5 @@
 ﻿using BaseProject.Data;
+using BaseProject.Interface;
 using ClientRouting.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +10,11 @@ using System.Threading.Tasks;
 
 namespace ClientRouting.Data.Repositories
 {
-    public class ClientReporsitory : GenericRepository<Client>
+    public interface IClientRepository : IRepository<Client>
+    {
+
+    }
+    public class ClientReporsitory : GenericRepository<Client>, IClientRepository
     {
         public ClientReporsitory(DbContext dbContext, string userEmail) : base(dbContext, userEmail)
         {
