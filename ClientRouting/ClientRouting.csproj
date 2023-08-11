@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ClientRouting.Business\ClientRouting.Business.csproj" />
     <ProjectReference Include="..\ClientRouting.Data\ClientRouting.Data.csproj" />
     <ProjectReference Include="..\ClientRouting.Model\ClientRouting.Model.csproj" />
   </ItemGroup>

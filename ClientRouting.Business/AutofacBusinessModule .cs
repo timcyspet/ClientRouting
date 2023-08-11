@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientRouting.Data
+namespace ClientRouting.Business
 {
-    public class AutofacBusinessModule : Module
+    public class AutofacBusinessModule: Module
     {
         protected override void Load(ContainerBuilder builder)
         {
@@ -19,15 +19,11 @@ namespace ClientRouting.Data
                 var InterfaceType = types.Where(item => string.Compare(item.Name, string.Format("I{0}", type.Name)) == 0).FirstOrDefault();
                 if (InterfaceType != null)
                 {
-                    if (type.Name.Contains("Repository"))
-                        builder.RegisterType(type)
-                           .As(InterfaceType).InstancePerDependency()
-                           .WithParameter("userEmail", "system@system.com");
-                    else
-                        builder.RegisterType(type)
-                               .As(InterfaceType).InstancePerDependency();
+                    builder.RegisterType(type)
+                           .As(InterfaceType).InstancePerDependency();
                 }
             }
+            builder.RegisterModule(new ClientRouting.Data.AutofacBusinessModule());
         }
     }
 }

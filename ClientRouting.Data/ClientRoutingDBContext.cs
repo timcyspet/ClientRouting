@@ -17,10 +17,17 @@ namespace ClientRouting.Data
         public DbSet<ClientResource> ClientResources { get; set; }
         public DbSet<ResourceType> ResourceTypes { get; set; }
         public DbSet<ResourceConfiguration> ResourceConfigurations { get; set; }
-        public DbSet<ConfigurationType> ConfigurationTypes { get; set; }
+        public DbSet<ConfigurationProperty> ConfigurationProperties { get; set; }
         public DbSet<ResourceTemplate> ResourceTemplates { get; set; }
         public DbSet<ClientEngagement> ClientEngagements { get; set; }
         public DbSet<Service> Services { get; set; }
+        public DbSet<ClientType> ClientTypes { get; set; }
+        public DbSet<ClientTemmpalte> ClientTemmpaltes { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Jurisdiction> Jurisdictions { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<ClientProperty> ClientProperties { get; set; }
+        public DbSet<ClientCustomProperty> ClientCustomProperties { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

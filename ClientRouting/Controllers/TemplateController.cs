@@ -8,6 +8,11 @@ namespace ClientRouting.Controllers
     [ApiController]
     public class TemplateController : ControllerBase
     {
+        private readonly ILogger<TemplateController> _logger;
+        public TemplateController(ILogger<TemplateController> logger)
+        {
+            _logger = logger;
+        }
         // GET: api/<TemplateController>
         [HttpGet]
         public IEnumerable<string> Get()

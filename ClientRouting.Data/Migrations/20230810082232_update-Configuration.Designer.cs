@@ -4,6 +4,7 @@ using ClientRouting.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClientRouting.Data.Migrations
 {
     [DbContext(typeof(ClientRoutingDBContext))]
-    partial class ClientRoutingDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230810082232_update-Configuration")]
+    partial class updateConfiguration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,52 +26,6 @@ namespace ClientRouting.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ClientRouting.Model.Address", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<long>("JurisdictionId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("StreetName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("JurisdictionId");
-
-                    b.ToTable("Addresses", "Client");
-                });
-
             modelBuilder.Entity("ClientRouting.Model.Client", b =>
                 {
                     b.Property<long>("Id")
@@ -77,9 +34,6 @@ namespace ClientRouting.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("AddressId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("CreatedBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -101,9 +55,6 @@ namespace ClientRouting.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("TypeId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("UpdatedBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -112,66 +63,8 @@ namespace ClientRouting.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
-
-                    b.HasIndex("TypeId");
 
                     b.ToTable("Clients", "Client");
-                });
-
-            modelBuilder.Entity("ClientRouting.Model.ClientCustomProperty", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<long?>("ClientTemmpalteId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DisplayName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientTemmpalteId");
-
-                    b.ToTable("ClientCustomProperties", "Client");
                 });
 
             modelBuilder.Entity("ClientRouting.Model.ClientEngagement", b =>
@@ -205,53 +98,6 @@ namespace ClientRouting.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ClientEngagements", "Client");
-                });
-
-            modelBuilder.Entity("ClientRouting.Model.ClientProperty", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<long?>("ClientId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<long>("KeyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Value")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
-
-                    b.HasIndex("KeyId");
-
-                    b.ToTable("ClientProperties", "Client");
                 });
 
             modelBuilder.Entity("ClientRouting.Model.ClientResource", b =>
@@ -305,97 +151,6 @@ namespace ClientRouting.Data.Migrations
                     b.ToTable("ClientResources", "Client");
                 });
 
-            modelBuilder.Entity("ClientRouting.Model.ClientTemmpalte", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("ClientTypeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientTypeId");
-
-                    b.ToTable("ClientTemmpaltes", "Client");
-                });
-
-            modelBuilder.Entity("ClientRouting.Model.ClientType", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ClientTypes", "Client");
-                });
-
             modelBuilder.Entity("ClientRouting.Model.ConfigurationProperty", b =>
                 {
                     b.Property<long>("Id")
@@ -416,10 +171,6 @@ namespace ClientRouting.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DisplayName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -450,93 +201,6 @@ namespace ClientRouting.Data.Migrations
                     b.ToTable("ConfigurationProperties", "Client");
                 });
 
-            modelBuilder.Entity("ClientRouting.Model.Country", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Countries", "Client");
-                });
-
-            modelBuilder.Entity("ClientRouting.Model.Jurisdiction", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("CountryId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CountryId");
-
-                    b.ToTable("Jurisdictions", "Client");
-                });
-
             modelBuilder.Entity("ClientRouting.Model.ResourceConfiguration", b =>
                 {
                     b.Property<long>("Id")
@@ -548,6 +212,9 @@ namespace ClientRouting.Data.Migrations
                     b.Property<long?>("ClientResourceId")
                         .HasColumnType("bigint");
 
+                    b.Property<long>("ConfigurationPropertyId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("CreatedBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -560,9 +227,6 @@ namespace ClientRouting.Data.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
-
-                    b.Property<long>("KeyId")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("UpdatedBy")
                         .IsRequired()
@@ -579,7 +243,7 @@ namespace ClientRouting.Data.Migrations
 
                     b.HasIndex("ClientResourceId");
 
-                    b.HasIndex("KeyId");
+                    b.HasIndex("ConfigurationPropertyId");
 
                     b.ToTable("ResourceConfigurations", "Client");
                 });
@@ -726,58 +390,6 @@ namespace ClientRouting.Data.Migrations
                     b.ToTable("Services", "Client");
                 });
 
-            modelBuilder.Entity("ClientRouting.Model.Address", b =>
-                {
-                    b.HasOne("ClientRouting.Model.Jurisdiction", "Jurisdiction")
-                        .WithMany()
-                        .HasForeignKey("JurisdictionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Jurisdiction");
-                });
-
-            modelBuilder.Entity("ClientRouting.Model.Client", b =>
-                {
-                    b.HasOne("ClientRouting.Model.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ClientRouting.Model.ClientType", "Type")
-                        .WithMany()
-                        .HasForeignKey("TypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Address");
-
-                    b.Navigation("Type");
-                });
-
-            modelBuilder.Entity("ClientRouting.Model.ClientCustomProperty", b =>
-                {
-                    b.HasOne("ClientRouting.Model.ClientTemmpalte", null)
-                        .WithMany("Properties")
-                        .HasForeignKey("ClientTemmpalteId");
-                });
-
-            modelBuilder.Entity("ClientRouting.Model.ClientProperty", b =>
-                {
-                    b.HasOne("ClientRouting.Model.Client", null)
-                        .WithMany("Properties")
-                        .HasForeignKey("ClientId");
-
-                    b.HasOne("ClientRouting.Model.ClientCustomProperty", "Key")
-                        .WithMany()
-                        .HasForeignKey("KeyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Key");
-                });
-
             modelBuilder.Entity("ClientRouting.Model.ClientResource", b =>
                 {
                     b.HasOne("ClientRouting.Model.Client", null)
@@ -793,29 +405,11 @@ namespace ClientRouting.Data.Migrations
                     b.Navigation("ResourceType");
                 });
 
-            modelBuilder.Entity("ClientRouting.Model.ClientTemmpalte", b =>
-                {
-                    b.HasOne("ClientRouting.Model.ClientType", "ClientType")
-                        .WithMany()
-                        .HasForeignKey("ClientTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ClientType");
-                });
-
             modelBuilder.Entity("ClientRouting.Model.ConfigurationProperty", b =>
                 {
                     b.HasOne("ClientRouting.Model.ResourceTemplate", null)
                         .WithMany("ConfigurationProperties")
                         .HasForeignKey("ResourceTemplateId");
-                });
-
-            modelBuilder.Entity("ClientRouting.Model.Jurisdiction", b =>
-                {
-                    b.HasOne("ClientRouting.Model.Country", null)
-                        .WithMany("Jurisdictions")
-                        .HasForeignKey("CountryId");
                 });
 
             modelBuilder.Entity("ClientRouting.Model.ResourceConfiguration", b =>
@@ -824,13 +418,13 @@ namespace ClientRouting.Data.Migrations
                         .WithMany("ResourceConfigurations")
                         .HasForeignKey("ClientResourceId");
 
-                    b.HasOne("ClientRouting.Model.ConfigurationProperty", "Key")
+                    b.HasOne("ClientRouting.Model.ConfigurationProperty", "ConfigurationProperty")
                         .WithMany()
-                        .HasForeignKey("KeyId")
+                        .HasForeignKey("ConfigurationPropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Key");
+                    b.Navigation("ConfigurationProperty");
                 });
 
             modelBuilder.Entity("ClientRouting.Model.ResourceTemplate", b =>
@@ -860,8 +454,6 @@ namespace ClientRouting.Data.Migrations
 
             modelBuilder.Entity("ClientRouting.Model.Client", b =>
                 {
-                    b.Navigation("Properties");
-
                     b.Navigation("Resources");
                 });
 
@@ -873,16 +465,6 @@ namespace ClientRouting.Data.Migrations
             modelBuilder.Entity("ClientRouting.Model.ClientResource", b =>
                 {
                     b.Navigation("ResourceConfigurations");
-                });
-
-            modelBuilder.Entity("ClientRouting.Model.ClientTemmpalte", b =>
-                {
-                    b.Navigation("Properties");
-                });
-
-            modelBuilder.Entity("ClientRouting.Model.Country", b =>
-                {
-                    b.Navigation("Jurisdictions");
                 });
 
             modelBuilder.Entity("ClientRouting.Model.ResourceTemplate", b =>
