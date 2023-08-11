@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ClientRouting.Business;
+using ClientRouting.Model;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +10,19 @@ namespace ClientRouting.Controllers
     [ApiController]
     public class ResourceTypeController : ControllerBase
     {
+        private readonly ILogger<ResourceTypeController> _logger;
+        private readonly IResourceTypeService _resourceTypeService;
+
+        public ResourceTypeController(ILogger<ResourceTypeController> logger, IResourceTypeService resourceTypeService)
+        {
+            _logger = logger;
+            _resourceTypeService= resourceTypeService;
+        }
         // GET: api/<ResourceTypeController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<ResourceType> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _resourceTypeService.GetResourceTypes();
         }
 
         // GET api/<ResourceTypeController>/5

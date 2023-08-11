@@ -12,7 +12,7 @@ namespace ClientRouting.Model
         public string Name { get; set; }
         public string Description { get; set; }
         public ResourceType ResourceType { get; set; }
-        public List<ConfigurationType> ConfigurationTypes { get; set; }
+        public List<ConfigurationProperty> ConfigurationProperties { get; set; }
 
     }
 }

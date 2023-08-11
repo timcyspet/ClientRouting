@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace ClientRouting.Data.Repositories
 {
-    public interface IClientRepository : IRepository<Client>
+    public interface IResourceTypeRepository : IRepository<ResourceType>
     {
 
     }
-    public class ClientReporsitory : GenericRepository<Client>, IClientRepository
+    public class ResourceTypeRepository : GenericRepository<ResourceType>, IResourceTypeRepository
     {
-        public ClientReporsitory(ClientRoutingDBContext dbContext, string userEmail) : base(dbContext, userEmail)
+        public ResourceTypeRepository(ClientRoutingDBContext dbContext, string userEmail) : base(dbContext, userEmail)
         {
         }
-    }
+    }    
 }
